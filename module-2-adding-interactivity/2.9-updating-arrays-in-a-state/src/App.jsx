@@ -1,27 +1,70 @@
 import { useState } from "react";
 
-let initialCounters = [0, 0, 0];
+const initialList = [
+  { id: 0, title: "Big Bellies", seen: false },
+  { id: 1, title: "Lunar Landscape", seen: false },
+  { id: 2, title: "Terracotta Army", seen: true },
+];
 
-export default function CounterList() {
-  const [counters, setCounters] = useState(initialCounters);
+export default function BucketList() {
+  const [myList, setMyList] = useState(initialList);
+  const [yourList, setYourList] = useState(initialList);
 
-  function handleIncrementClick(index) {
-    const nextCounters = counters.map((c, i) => {
-      if (i === index) {
-        return c + 1;
+  function handleToggleMyList(artworkId, nextSeen) {
+    const newList = myList.map((list) => {
+      if (list.id === artworkId) {
+        return {
+          ...list,
+          seen: nextSeen,
+        };
       } else {
-        return c;
+        return list;
       }
     });
-    setCounters(nextCounters);
+
+    setMyList(newList);
+  }
+
+  function handleToggleYourList(artworkId, nextSeen) {
+    setYourList(
+      yourList.map((artwork) => {
+        if (artwork.id === artworkId) {
+          // Create a *new* object with changes
+          return { ...artwork, seen: nextSeen };
+        } else {
+          // No changes
+          return artwork;
+        }
+      }),
+    );
   }
 
   return (
+    <>
+      <h1>Art Bucket List</h1>
+      <h2>My list of art to see:</h2>
+      <ItemList artworks={myList} onToggle={handleToggleMyList} />
+      <h2>Your list of art to see:</h2>
+      <ItemList artworks={yourList} onToggle={handleToggleYourList} />
+    </>
+  );
+}
+
+function ItemList({ artworks, onToggle }) {
+  return (
     <ul>
-      {counters.map((counter, i) => (
-        <li key={i}>
-          {counter}{" "}
-          <button onClick={() => handleIncrementClick(i)}>+1</button>{" "}
+      {artworks.map((artwork) => (
+        <li key={artwork.id}>
+          <label>
+            <input
+              type="checkbox"
+              checked={artwork.seen}
+              onChange={(e) => {
+                onToggle(artwork.id, e.target.checked);
+              }}
+            />
+            {artwork.title}
+          </label>
         </li>
       ))}
     </ul>
