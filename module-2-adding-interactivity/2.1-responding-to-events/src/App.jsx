@@ -3,7 +3,6 @@ export default function App() {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        console.log("submit");
       }}
     >
       <input />
