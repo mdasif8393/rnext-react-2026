@@ -1,5 +1,5 @@
 import "./App.css";
-import Form from "./components/Form";
+import Travel from "./components/Travel";
 // import Pointer from "./components/Pointer";
 
 function App() {
@@ -10,8 +10,7 @@ function App() {
         height: "100dvh",
       }}
     >
-      {/* <Pointer /> */}
-      <Form />
+      <Travel />
     </div>
   );
 }
