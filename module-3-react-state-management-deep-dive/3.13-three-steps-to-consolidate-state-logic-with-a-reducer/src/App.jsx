@@ -1,12 +1,12 @@
-import { useReducer } from "react";
 import "./App.css";
 import { initialTasks } from "./data/tasks";
 import AddTask from "./components/AddTask";
 import TaskList from "./components/TaskList";
 import taskReducer from "./reducers/taskReducer";
+import { useImmerReducer } from "use-immer";
 
 function App() {
-  const [tasks, dispatch] = useReducer(taskReducer, initialTasks);
+  const [tasks, dispatch] = useImmerReducer(taskReducer, initialTasks);
 
   // make id
   const getNextId = (data) => {
