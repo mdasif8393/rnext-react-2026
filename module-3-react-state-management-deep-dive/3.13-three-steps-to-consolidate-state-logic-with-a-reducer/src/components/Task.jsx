@@ -22,7 +22,7 @@ export default function Task({ task, onDeleteTask, onChangeTask }) {
       ))
     : (taskContent = (
         <>
-          {task.text}
+          {task.done ? <del> {task.text}</del> : task.text}
           <button onClick={() => setIsEditing(true)}>Edit</button>
         </>
       ));
