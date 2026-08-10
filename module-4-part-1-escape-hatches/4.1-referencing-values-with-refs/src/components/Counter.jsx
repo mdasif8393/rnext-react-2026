@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 export default function Counter() {
   const ref = useRef(0);
@@ -10,7 +10,7 @@ export default function Counter() {
 
   return (
     <>
-      <button onClick={handleClick}>Click Me! {ref.current}</button>
+      <button onClick={handleClick}>You clicked {ref.current} times</button>
     </>
   );
 }
