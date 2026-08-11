@@ -1,5 +1,6 @@
 import Form from "./components/Form";
 import "./App.css";
+import Counter from "./components/Counter";
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
         height: "100dvh",
       }}
     >
-      <Form />
+      <Counter />
     </div>
   );
 }
