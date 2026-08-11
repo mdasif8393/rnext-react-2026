@@ -1,5 +1,5 @@
+import Form from "../Form";
 import "./App.css";
-import CatFriends from "./components/CatFriends";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
         height: "100dvh",
       }}
     >
-      <CatFriends />
+      <Form />
     </div>
   );
 }
