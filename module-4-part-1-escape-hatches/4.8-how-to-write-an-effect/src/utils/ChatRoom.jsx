@@ -6,9 +6,7 @@ export default function ChatRoom() {
     const connection = createConnection();
     connection.connect();
 
-    return () => {
-      connection.disconnect();
-    };
+    return () => connection.disconnect();
   }, []);
   return <h1>Welcome to the chat!</h1>;
 }

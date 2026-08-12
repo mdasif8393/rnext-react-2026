@@ -4,7 +4,6 @@ import "./App.css";
 import ChatRoom from "./utils/ChatRoom";
 
 function App() {
-  const [show, setShow] = useState(true);
   return (
     <div
       style={{
@@ -12,10 +11,7 @@ function App() {
         height: "100dvh",
       }}
     >
-      <button onClick={() => setShow((s) => !s)}>
-        {show ? "Hide" : "Show"}
-      </button>
-      {show && <ChatRoom />}
+      <ChatRoom />
     </div>
   );
 }
