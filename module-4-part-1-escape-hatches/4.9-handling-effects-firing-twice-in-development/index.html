@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4.9-handling-effects-firing-twice-in-development</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      // Extend HTMLElement prototype to add a setZoomLevel method
+      HTMLElement.prototype.setZoomLevel = function (zoomLevel) {
+        this.style.zoom = zoomLevel;
+      };
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
