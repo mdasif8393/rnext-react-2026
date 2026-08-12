@@ -1,12 +1,14 @@
-import Map from "./components/Map";
 import "./App.css";
-import Dialogue from "./components/Dialogue";
+import Comments from "./components/Comments";
 
 function App() {
   return (
     <>
       {/* <Map /> */}
-      <Dialogue />
+      {/* <Dialogue /> */}
+      {/* <Scroller /> */}
+      {/* <Animation /> */}
+      <Comments postId="2" />
     </>
   );
 }
