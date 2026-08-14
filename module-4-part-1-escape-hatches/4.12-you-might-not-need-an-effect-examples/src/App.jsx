@@ -1,11 +1,13 @@
 import "./App.css";
-import Example4 from "./components/Example4";
-import Example5 from "./components/Example5";
+import { useState } from "react";
+import Example7 from "./components/Example7";
 
 function App() {
+  const [isOn, setIsOn] = useState(false); // example 7
   return (
     <>
-      <Example5 />
+      <p>{isOn ? "On" : "Off"}</p>
+      <Example7 onChange={setIsOn} />
     </>
   );
 }
