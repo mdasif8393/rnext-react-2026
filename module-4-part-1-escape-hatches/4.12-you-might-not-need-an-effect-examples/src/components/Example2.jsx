@@ -1,3 +1,4 @@
+// import { useEffect } from "react";
 import { useState } from "react";
 
 export default function Example2({ userId }) {
@@ -5,7 +6,7 @@ export default function Example2({ userId }) {
 
   // 🔴 Avoid: Resetting state on prop change in an Effect
   // useEffect(() => {
-  //     setComment("");
+  //   setComment("");
   // }, [userId]);
 
   return (
