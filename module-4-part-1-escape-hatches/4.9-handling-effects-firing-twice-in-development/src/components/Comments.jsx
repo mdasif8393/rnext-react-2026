@@ -8,18 +8,20 @@ export default function Comments({ postId }) {
     let ignore = false;
 
     async function startFetching() {
+      console.log("Fetching..");
       const json = await fetchComments(postId);
 
       if (!ignore) {
+        console.log("Setting..");
         setComments(json);
       }
-
-      return () => {
-        ignore = true;
-      };
     }
 
     startFetching();
+
+    return () => {
+      ignore = true;
+    };
   }, [postId]);
 
   return (
