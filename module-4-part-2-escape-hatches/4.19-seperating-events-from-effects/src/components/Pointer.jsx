@@ -18,7 +18,6 @@ export default function Pointer() {
   });
 
   useEffect(() => {
-    console.log("Hello");
     window.addEventListener("pointermove", onMove);
 
     return () => window.removeEventListener("pointermove", onMove);
