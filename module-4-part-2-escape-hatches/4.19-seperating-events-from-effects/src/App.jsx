@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Page from "./components/Page";
 import ShoppingCartContext from "./contexts/ShoppingCartContext";
+import Pointer from "./components/Pointer";
 
 const items = [
   {
@@ -29,9 +30,12 @@ function App() {
   };
 
   return (
-    <ShoppingCartContext.Provider value={cartItems}>
-      <Page url={page} onPageChange={handlePageChange} onAddItems={addItem} />
-    </ShoppingCartContext.Provider>
+    // <ShoppingCartContext.Provider value={cartItems}>
+    //   <Page url={page} onPageChange={handlePageChange} onAddItems={addItem} />
+    // </ShoppingCartContext.Provider>
+    <>
+      <Pointer />
+    </>
   );
 }
 
