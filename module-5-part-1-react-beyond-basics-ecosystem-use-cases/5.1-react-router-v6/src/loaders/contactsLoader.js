@@ -1,5 +1,6 @@
 // import localforage from "localforage";
-import { getContact, getContacts } from "../contacts";
+import { redirect } from "react-router-dom";
+import { getContact, getContacts, updateContact } from "../contacts";
 
 export async function getContactsLoader() {
     // localforage.clear();
@@ -10,4 +11,12 @@ export async function getContactsLoader() {
 export async function getContactLoader({ params }) {
     const contact = await getContact(params.contactId);
     return { contact };
+}
+
+export async function editContactAction({ request, params }) {
+
+    const formData = await request.formData();
+    const updates = Object.fromEntries(formData);
+    await updateContact(params.contactId, updates);
+    return redirect(`/contacts/${params.contactId}`);
 }
