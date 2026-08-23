@@ -44,6 +44,11 @@
       "id": "NaN",
       "title": "vdsv",
       "body": "sdv"
+    },
+    {
+      "id": "7d87659b-bbee-458a-b3c7-b641db9cea8e",
+      "title": "asd",
+      "body": "asd"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -4,39 +4,16 @@ import "./App.css";
 import Posts from "../components/Posts";
 import AddPost from "../components/AddPost";
 import EditPost from "../components/EditPost";
-import axios from "axios";
 import api from "./api/api";
 
-function App() {
+export default function App() {
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState(null); // post I am editing
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await api.get("/posts");
-
-        if (response && response.data) {
-          setPosts(response.data);
-        }
-      } catch (err) {
-        if (err.response) {
-          setError(
-            `Error from Server: status: ${err.response.status} -Message: ${err.response.data}`,
-          );
-        } else {
-          setError(err.message);
-        }
-      }
-    };
-
-    fetchPosts();
-  }, []);
-
   const handleAddPost = async (newPost) => {
     try {
-      const id = posts.length ? Number(posts[posts.length - 1].id) + 1 : 1;
+      const id = crypto.randomUUID();
 
       const finalPost = {
         id: id.toString(),
@@ -47,13 +24,7 @@ function App() {
 
       setPosts([...posts, response.data]);
     } catch (err) {
-      if (err.response) {
-        setError(
-          `Error from Server: status: ${err.response.status} -Message: ${err.response.data}`,
-        );
-      } else {
-        setError(err.message);
-      }
+      setError(err.message);
     }
   };
 
@@ -70,6 +41,7 @@ function App() {
       console.log("You chose not to delete the post!");
     }
   };
+
   const handleEditPost = async (updatedPost) => {
     try {
       const response = await api.patch(`/posts/${updatedPost.id}`, updatedPost);
@@ -84,35 +56,51 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await api.get("/posts");
+
+        if (response && response.data) {
+          setPosts(response.data);
+        }
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
   return (
-    <>
-      <h1>API Request with Axios</h1>
-      <hr />
-
+    <div>
       <div>
-        <Posts
-          posts={posts}
-          onDeletePost={handleDeletePost}
-          onEditClick={setPost}
-        />
-
+        <h1>API Request with Axios</h1>
         <hr />
 
-        {!post ? (
-          <AddPost onAddPost={handleAddPost} />
-        ) : (
-          <EditPost post={post} onEditPost={handleEditPost} />
-        )}
-        {error && (
-          <>
-            {" "}
-            <hr />
-            <div className="error">{error}</div>{" "}
-          </>
-        )}
+        <div>
+          <Posts
+            posts={posts}
+            onDeletePost={handleDeletePost}
+            onEditClick={setPost}
+          />
+
+          <hr />
+
+          {!post ? (
+            <AddPost onAddPost={handleAddPost} />
+          ) : (
+            <EditPost post={post} onEditPost={handleEditPost} />
+          )}
+
+          {error && (
+            <>
+              <hr />
+              <div className="error">{error}</div>
+            </>
+          )}
+        </div>
       </div>
-    </>
+    </div>
   );
 }
-
-export default App;
