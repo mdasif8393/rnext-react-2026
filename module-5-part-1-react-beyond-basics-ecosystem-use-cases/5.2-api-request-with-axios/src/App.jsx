@@ -1,41 +1,87 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import initialPosts from "./data/db";
+// import initialPosts from "./data/db";
 import Posts from "../components/Posts";
 import AddPost from "../components/AddPost";
 import EditPost from "../components/EditPost";
+import axios from "axios";
+import api from "./api/api";
 
 function App() {
-  const [posts, setPosts] = useState(initialPosts);
+  const [posts, setPosts] = useState([]);
   const [post, setPost] = useState(null); // post I am editing
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await api.get("/posts");
+
+        if (response && response.data) {
+          setPosts(response.data);
+        }
+      } catch (err) {
+        if (err.response) {
+          setError(
+            `Error from Server: status: ${err.response.status} -Message: ${err.response.data}`,
+          );
+        } else {
+          setError(err.message);
+        }
+      }
+    };
+
+    fetchPosts();
+  }, []);
 
   const handleAddPost = async (newPost) => {
-    const id = posts.length ? Number(posts[posts.length - 1].id) + 1 : 1;
+    try {
+      const id = posts.length ? Number(posts[posts.length - 1].id) + 1 : 1;
 
-    setPosts([
-      ...posts,
-      {
-        id,
+      const finalPost = {
+        id: id.toString(),
         ...newPost,
-      },
-    ]);
+      };
+
+      const response = await api.post("/posts", finalPost);
+
+      setPosts([...posts, response.data]);
+    } catch (err) {
+      if (err.response) {
+        setError(
+          `Error from Server: status: ${err.response.status} -Message: ${err.response.data}`,
+        );
+      } else {
+        setError(err.message);
+      }
+    }
   };
 
   const handleDeletePost = async (postId) => {
     if (confirm("Are you sure you want to delete the post?")) {
-      const newPosts = posts.filter((post) => post.id !== postId);
-      setPosts(newPosts);
+      try {
+        await api.delete(`/posts/${postId}`);
+        const newPosts = posts.filter((post) => post.id !== postId);
+        setPosts(newPosts);
+      } catch (err) {
+        setError(err.message);
+      }
     } else {
       console.log("You chose not to delete the post!");
     }
   };
-
   const handleEditPost = async (updatedPost) => {
-    const updatedPosts = posts.map((post) =>
-      post.id === updatedPost.id ? updatedPost : post,
-    );
+    try {
+      const response = await api.patch(`/posts/${updatedPost.id}`, updatedPost);
 
-    setPosts(updatedPosts);
+      const updatedPosts = posts.map((post) =>
+        post.id === response.data.id ? response.data : post,
+      );
+
+      setPosts(updatedPosts);
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
@@ -56,6 +102,13 @@ function App() {
           <AddPost onAddPost={handleAddPost} />
         ) : (
           <EditPost post={post} onEditPost={handleEditPost} />
+        )}
+        {error && (
+          <>
+            {" "}
+            <hr />
+            <div className="error">{error}</div>{" "}
+          </>
         )}
       </div>
     </>

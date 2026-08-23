@@ -24,6 +24,27 @@
       "id": "5",
       "title": "nesciunt quas odios",
       "body": "repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque"
+    },
+    {
+      "id": "fsk-ZGraOtc",
+      "title": "aaaasd",
+      "body": "aaaasd"
+    },
+    {
+      "id": "WufXQBzqUko",
+      "title": "asd",
+      "body": "asd"
+    },
+    {
+      "id": "p4U7PDmwBfM",
+      "title": "asf",
+      "body": "asdf"
+    },
+    {
+      "id": "NaN",
+      "title": "vdsv",
+      "body": "sdv"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
