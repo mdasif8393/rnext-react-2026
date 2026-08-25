@@ -1,4 +1,3 @@
-/* eslint-disable no-unsafe-optional-chaining */
 import React from "react";
 
 const Field = ({ label, children, htmlFor, error }) => {
@@ -17,11 +16,12 @@ const Field = ({ label, children, htmlFor, error }) => {
 };
 
 const getChildId = (children) => {
-  const child = React.Children.only(children);
+  const child = React.Children.toArray(children)[0];
 
-  if ("id" in child?.props) {
+  if (child && "id" in child.props) {
     return child.props.id;
   }
-};
 
+  return undefined;
+};
 export default Field;
