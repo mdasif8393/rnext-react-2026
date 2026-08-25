@@ -1,12 +1,11 @@
 import "./App.css";
-import Field from "./components/Field";
-import FieldSet from "./components/FieldSet";
-import LoginForm from "./forms/LoginForm";
+import RegistrationForm from "./forms/RegistrationForm";
 
 function App() {
   return (
     <div>
-      <LoginForm />
+      {/* <LoginForm /> */}
+      <RegistrationForm />
     </div>
   );
 }
