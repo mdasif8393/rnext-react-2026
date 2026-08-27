@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import "./App.css";
 import PostSelector from "./components/PostSelector";
 import Comments from "./components/Comments";
@@ -16,7 +16,9 @@ function App() {
         <h1>React Suspense and Error Boundaries</h1>
 
         <div>
-          <PostSelector onSelectPost={handleSelectPost} />
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <PostSelector onSelectPost={handleSelectPost} />
+          </Suspense>
           {selectedPostId && <Comments postId={selectedPostId} />}
         </div>
       </div>

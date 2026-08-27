@@ -18,11 +18,14 @@ export default function Comments({ postId }) {
         const data = await response.json();
 
         if (response.ok) {
+          setIsCommentsLoading(false);
           setComments(data);
         } else {
+          setIsCommentsLoading(false);
           setCommentsError("There is an error");
         }
       } catch (err) {
+        setIsCommentsLoading(false);
         setCommentsError(err.message);
       } finally {
         setIsCommentsLoading(false);
