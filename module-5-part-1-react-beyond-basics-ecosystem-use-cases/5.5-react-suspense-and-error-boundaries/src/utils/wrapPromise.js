@@ -27,6 +27,6 @@ export default function wrapPromise(promise) {
   };
 
   return {
-    read,
+    read
   };
 }
