@@ -1,6 +1,8 @@
 import "./App.css";
 import ButtonTap from "./components/ButtonTap";
+import Counter from "./components/Counter";
 import Keyframe from "./components/KeyFrame";
+import ScrollReveal from "./components/ScrollReveal";
 import Simple from "./components/Simple";
 import TextMotion from "./components/TextMotion";
 import TransitionType from "./components/TransitionType";
@@ -15,6 +17,8 @@ function App() {
       <TextMotion />
       <TransitionType />
       <Variants />
+      <Counter />
+      <ScrollReveal />
     </>
   );
 }

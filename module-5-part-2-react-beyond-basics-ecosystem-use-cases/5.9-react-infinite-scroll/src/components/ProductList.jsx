@@ -16,6 +16,7 @@ export default function ProductList() {
           page * productsPerPage
         }`,
       );
+
       const data = await response.json();
 
       if (data.products.length === 0) {
@@ -59,7 +60,16 @@ export default function ProductList() {
         />
       ))}
 
-      {hasMore && <div ref={loaderRef}>Loading more products...</div>}
+      {/*Loading div */}
+      {hasMore && (
+        <div ref={loaderRef}>
+          <div className="flex items-center justify-center p-4">
+            <div className="h-5 w-5 animate-spin rounded-full border-2 border-gray-300 border-t-blue-600">
+              Loading...
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
