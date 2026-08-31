@@ -1,7 +1,8 @@
-import "./App.css";
+import GitHubProfile from "./debug/GitHubProfile";
+import LayoutTest from "./layout/LayoutTest";
 
 function App() {
-  return <></>;
+  return <GitHubProfile />;
 }
 
 export default App;
