@@ -3,7 +3,7 @@ import { useStateDisplayName } from "./useStateDisplayName";
 
 const useGitHub = (username) => {
 
-    useDebugValue(`Fetching data for ${username}`)
+    useDebugValue(`Fetching data for ${username}`);
 
     const [user, setUser] = useStateDisplayName(null, "userInfo");
     const [error, setError] = useStateDisplayName(null, "errorInfo");
