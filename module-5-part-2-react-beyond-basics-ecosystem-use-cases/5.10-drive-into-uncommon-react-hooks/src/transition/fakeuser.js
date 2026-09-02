@@ -1,10 +1,10 @@
-import { faker } from '@faker-js/faker';
+import { faker } from "@faker-js/faker";
 
 const THRESHOLD = 10000;
 
-export const users = Array.from(Array(THRESHOLD), () => {
+export const users = Array.from({ length: THRESHOLD }, () => {
   return {
-    name: faker.name.fullName(),
-    avatar: faker.image.avatar()
+    name: faker.person.fullName(),
+    avatar: faker.image.avatar(),
   };
 });

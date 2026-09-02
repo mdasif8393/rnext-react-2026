@@ -1,9 +1,8 @@
-import GitHubProfile from "./debug/GitHubProfile";
-import IdForm from "./id/IdForm";
-import LayoutTest from "./layout/LayoutTest";
+import { users } from "./transition/fakeuser";
+import FindUser from "./transition/FindUser";
 
 function App() {
-  return <IdForm />;
+  return <FindUser users={users} />;
 }
 
 export default App;
