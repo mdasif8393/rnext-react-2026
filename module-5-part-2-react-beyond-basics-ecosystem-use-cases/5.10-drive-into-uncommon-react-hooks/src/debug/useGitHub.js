@@ -1,17 +1,17 @@
-import { useDebugValue, useEffect } from "react";
+import { useEffect, useState, useDebugValue } from "react";
 import { useStateDisplayName } from "./useStateDisplayName";
+
 const useGitHub = (username) => {
-    useDebugValue(`Fetching data for ${username}`);
+
+    useDebugValue(`Fetching data for ${username}`)
 
     const [user, setUser] = useStateDisplayName(null, "userInfo");
     const [error, setError] = useStateDisplayName(null, "errorInfo");
     const [loading, setLoading] = useStateDisplayName(false, "loadingInfo");
 
-    useDebugValue(
-        error
-            ? `There is an error fetching the data for ${username}`
-            : `No Error fetching the data for ${username}`
-    );
+    useDebugValue(error ?
+        `There is an error fetching the data for ${username}`
+        : `No Error fetching the data for ${username}`);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,7 +23,7 @@ const useGitHub = (username) => {
                 const responseData = await response.json();
                 setUser(responseData);
                 setLoading(false);
-                console.log(responseData);
+
             } catch (error) {
                 setError(error);
                 setLoading(false);
@@ -32,7 +32,8 @@ const useGitHub = (username) => {
         fetchData();
     }, [username]);
 
-    useDebugValue(user, (user) => user?.bio);
+    useDebugValue(user, user => user?.bio);
+
     return { user, loading, error };
 };
 
