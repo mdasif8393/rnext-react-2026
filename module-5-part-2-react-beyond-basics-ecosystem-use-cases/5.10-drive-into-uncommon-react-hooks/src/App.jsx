@@ -1,7 +1,8 @@
-import ListAnimal from "./deferred/ListAnimal";
+import ParentChild from "./imperative/ParentChild";
+import Boomer from "./insertion/Boomer";
 
 function App() {
-  return <ListAnimal />;
+  return <ParentChild />;
 }
 
 export default App;
